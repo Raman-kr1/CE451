@@ -1,0 +1,140 @@
+﻿##~ running Plaxis2DXInput.exe 2024.2.0.1144
+_setproperties "Title" "analysis" "Company" "IIT K" "Comments" "" "UnitForce" "kN" "UnitLength" "m" "UnitTime" "day" "UnitTemperature" "K" "UnitEnergy" "kJ" "UnitPower" "kW" "WaterWeight" 10 "ReferenceTemperature" 293.15 "LiquidSpecificHeatCapacity" 4181.3 "LiquidThermalConductivity" 0.0006 "LiquidLatentHeat" 334000 "LiquidThermalExpansion" 0.00021 "LiquidTemperature" 293.15 "IceSpecificHeatCapacity" 2108 "IceThermalConductivity" 0.00222 "IceThermalExpansion" 5E-5 "VapourSpecificHeatCapacity" 1930 "VapourThermalConductivity" 2.5E-5 "VapourSpecificGasConstant" 461.5 "UseTemperatureDepWaterPropsTable" False "ModelType" "Plane strain" "ElementType" "15-Noded"
+_initializerectangular SoilContour 0 0 12 8
+_gotostructures
+_line (0 0) (16 0)
+_line Point_2 (16 6)
+_line Point_3 (0 6)
+_line Point_4 Point_1
+_set Point_2.x 36
+_set Point_3.x 36
+_set Point_3.y 15
+_set Point_4.y 15
+_plate (18 12) (18 18)
+_mergeequivalents Geometry
+checkgeometry
+_undo
+_undo
+_undo
+_undo
+_undo
+_undo
+_undo
+_undo
+_undo
+_polygon (0 0) (36 0) (36 15) (0 15)
+_plate (18 12) (18 18)
+checkgeometry
+_gotosoil
+_mergeequivalents Geometry
+_gotomesh
+_gotoflow
+_activate Geometry InitialPhase
+_deactivate Geometry InitialPhase
+_gotomesh
+_gotostages
+_gotostructures
+_polygon (0 15) (18 15) (18 18) (0 18)
+_soilmat "SoilModel" "Mohr-Coulomb"
+_set SoilMat_1.Identification "Cohessionless 20"
+_set Cohessionless20.gammaUnsat 18
+_set Cohessionless20.gammaSat 20
+_set Cohessionless20.ERef 60000
+_set Cohessionless20.nu 0.3
+_set Cohessionless20.phi 20
+_set Cohessionless20.psi 10
+_set Cohessionless20.InterfaceStrengthDetermination "Manual"
+_delete Cohessionless20
+_posinterface Line_1
+_neginterface Line_1
+_soilmat "SoilModel" "Mohr-Coulomb"
+_set SoilMat_1.Identification "20"
+_set SoilMat_1.gammaUnsat 18
+_set SoilMat_1.gammaSat 20
+_set SoilMat_1.ERef 60000
+_set SoilMat_1.nu 0.3
+_set SoilMat_1.phi 20
+_set SoilMat_1.psi 10
+_set SoilMat_1.InterfaceStiffnessDetermination "Direct"
+_set SoilMat_1.InterfaceStiffnessDetermination "Derived"
+_set SoilMat_1.InterfaceStrengthDetermination "Manual"
+_set SoilMat_1.Rinter 0.18
+_set SoilMat_1.GwUseDefaults True
+_set SoilMat_1.GwUseDefaults False
+_set SoilMat_1.PermHorizontalPrimary 8.64
+_set SoilMat_1.PermVertical 8.64
+_platemat "MaterialType" "Elastic"
+_set PlateMat_1.Identification "pl"
+_set Pl.EA1 2100000
+_set Pl.EI 21000
+_set Pl.w 0.77
+_set Pl.StructNu 0.3
+_set Line_1.Plate.Material Pl
+_set Polygon_1.Soil.Material SoilMat_1
+_set Polygon_1.Soil.WaterConditions.Conditions "User-defined"
+_set Polygon_1.Soil.WaterConditions.Conditions "Head"
+_set Polygon_1.Soil.WaterConditions.Conditions "Interpolate"
+_set Polygon_1.Soil.WaterConditions.Conditions "Global level"
+_mergeequivalents Geometry
+_gotomesh
+_mesh 0.04002
+_gotoflow
+_waterlevel (36 15) (18 15) (18 18) (0 18)
+_gotostages
+_activate Soil_1_1 InitialPhase
+_activate Soil_2_1 InitialPhase
+_activate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_deactivate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_activate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_deactivate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_activate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_activate GWFlowBaseBC_6 Plate_1_2 PositiveInterface_1_2 NegativeInterface_1_2 InitialPhase
+_deactivate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_activate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 InitialPhase
+_set Soil_2_1.Material InitialPhase SoilMat_1
+_calculate
+_set InitialPhase.ShouldCalculate True
+_set InitialPhase.ShouldCalculate False
+_deactivate Interfaces InitialPhase
+_set (InitialPhase.ShouldCalculate) True
+_calculate
+_activate Interfaces InitialPhase
+_activate GWFlowBaseBC_7 InitialPhase
+_gotoflow
+_activate GWFlowBaseBC_1 InitialPhase
+_activate GWFlowBaseBC_2 InitialPhase
+_activate GWFlowBaseBC_4 InitialPhase
+_deactivate GWFlowBaseBC_4 InitialPhase
+_activate GWFlowBaseBC_5 InitialPhase
+_activate GWFlowBaseBC_8 InitialPhase
+_deactivate GWFlowBaseBC_2 InitialPhase
+_deactivate GWFlowBaseBC_6 InitialPhase
+_set InitialPhase.PorePresCalcType "Steady state groundwater flow"
+_set InitialPhase.PorePresCalcType "Phreatic"
+_gotomesh
+_viewmesh
+_gotoflow
+_phase InitialPhase
+_set Model.CurrentPhase Phase_1
+_set Model.CurrentPhase InitialPhase
+_set Model.CurrentPhase Phase_1
+_set Phase_1.PorePresCalcType "Steady state groundwater flow"
+_set Phase_1.Deform.IgnoreUndrainedBehaviour True
+_set GroundwaterFlow.BoundaryXMin Phase_1 "Closed"
+_set GroundwaterFlow.BoundaryXMax Phase_1 "Closed"
+_set GroundwaterFlow.BoundaryYMin Phase_1 "Open"
+_phase Phase_1
+_set Model.CurrentPhase Phase_2
+_set Model.CurrentPhase Phase_1
+_gotostages
+_deactivate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 Phase_1
+_activate GWFlowBaseBC_6 Plate_1_2 PositiveInterface_1_2 NegativeInterface_1_2 Phase_1
+_deactivate GWFlowBaseBC_6 Plate_1_2 PositiveInterface_1_2 NegativeInterface_1_2 Phase_1
+_activate GWFlowBaseBC_6 Plate_1_2 PositiveInterface_1_2 NegativeInterface_1_2 Phase_1
+_activate GWFlowBaseBC_3 Plate_1_1 PositiveInterface_1_1 NegativeInterface_1_1 Phase_1
+selectmeshpoints
+_selectmeshpoints
+_calculate
+_set Phase_1.Deform.UseUpdatedMesh True
+_view Phase_1
+##~ running Plaxis2DXInput.exe 2024.2.0.1144
